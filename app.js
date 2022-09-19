@@ -1,6 +1,7 @@
 // add methods from express
 const express = require("express");
 const noteRouter = require("./routes/noteRoutes");
+const htmlRouter = require("./routes/htmlRoutes");
 
 const app = express();
 
