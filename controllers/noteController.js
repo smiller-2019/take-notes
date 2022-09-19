@@ -73,9 +73,23 @@ exports.createNote = (req, res) => {
 };
 // delete a note for a specified id
 exports.deleteNote = (req, res) => {
-  // note exists, delete a note
-  res.status(204).json({
-    status: "Success",
-    data: null,
+  console.log(req.params);
+  // convert id to a number by multiplying by 1
+  const id = req.params.id * 1;
+
+  // iterate through the array to find element that is equal to the id and matches the id
+  const note = notes.find((el) => el.id === id);
+
+  let index = notes.indexOf(note);
+  notes.splice(index, 1);
+  console.log("deleting note");
+  console.log(notes);
+  fs.writeFile("./db/db.json", JSON.stringify(notes), (err) => {
+    res.status(204).json({
+      status: "Succes",
+      data: {
+        note,
+      },
+    });
   });
 };
