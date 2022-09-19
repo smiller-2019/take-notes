@@ -92,13 +92,19 @@ const deleteNote = (req, res) => {
   });
 };
 
+// create new router to allow routes to be placed in separate file
+const noteRouter = express.Router();
+
+// mounting a new router
+app.use("/api/notes", noteRouter);
+
 // seperate the route from the handlers using app.route and . notation
 // get a note from using the route handler for the id
 // create a new note
-app.route("/api/notes").get(getAllNotes).post(createNote);
+noteRouter.route("/").get(getAllNotes).post(createNote);
 // get a specifed note using the id
 // delete a specified note using the id
-app.route("/api/notes/:id").get(getNote).delete(deleteNote);
+noteRouter.route("/:id").get(getNote).delete(deleteNote);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT} ...`);
