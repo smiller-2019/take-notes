@@ -2,6 +2,29 @@ const fs = require("fs");
 //convert to an array of javascript objects
 const notes = JSON.parse(fs.readFileSync(`${__dirname}/../db/db.json`));
 
+exports.checkID = (req, res, next, val) => {
+  console.log(`Notes id is: ${val}`);
+  // check the note exists before deleting
+  if (req.params.id * 1 > notes.length) {
+    return res.status(404).json({
+      status: "fail",
+      message: "Invalid ID",
+    });
+  }
+  next();
+};
+
+// check title or text in note is not missing
+exports.checkBody = (req, res, next) => {
+  if (!req.body.title || !req.body.text) {
+    return res.status(400).json({
+      status: "fail",
+      message: "Missing title or text",
+    });
+  }
+  next();
+};
+
 // get all notes
 exports.getAllNotes = (req, res) => {
   console.log(req.requestTime);
@@ -21,11 +44,6 @@ exports.getNote = (req, res) => {
 
   // iterate through the array to find element that is equal to the id and matches the id
   const note = notes.find((el) => el.id === id);
-
-  // if note does not exist then return fail message
-  if (!note) {
-    return res.status(404).json({ staus: "fail", message: "Invalid ID" });
-  }
 
   res.status(200).json({
     status: "Sucess",
@@ -55,14 +73,6 @@ exports.createNote = (req, res) => {
 };
 // delete a note for a specified id
 exports.deleteNote = (req, res) => {
-  // check the note exists before deleting
-  if (req.params.id * 1 > notes.length) {
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid ID",
-    });
-  }
-
   // note exists, delete a note
   res.status(204).json({
     status: "Success",
