@@ -85,7 +85,7 @@ exports.deleteNote = (req, res) => {
   notes.splice(index, 1);
   console.log("deleting note");
   console.log(notes);
-  fs.writeFile("./db/db.json", JSON.stringify(notes), (err) => {
+  fs.writeFile("./../db/db.json", JSON.stringify(notes), (err) => {
     res.status(204).json({
       status: "Succes",
       data: {

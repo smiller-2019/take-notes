@@ -24,11 +24,12 @@ Type in npm install to install express.
 
 ## Usage
 
-Run index.html to run the application.
+Run npm start or node server.js
 
-The following image shows the results of using the 'take-notes':
+The following image shows the steps to use the 'take-notes application':
 
-![Result](./images/usage.png)
+![Result](./images/Step-1-home-page.png)
+![Result](./images/Step-2-write-note.png)
 
 ## License
 
@@ -55,7 +56,17 @@ Open a Github issue with the tag 'improvements'
 
 ## Tests
 
-To test on the server, run npm start.
+To test on a server such as express, run npm start then using insomnia type in http://localhost:3001/api/notes to GET all notes. To select a specific note type in http://localhost:3001/api/notes/<note id> on a GET. To add a note type in http://localhost:3001/api/notes on a POST. To delete a note type in http://localhost:3001/api/notes<note id> on a DELETE.
+
+To test the frontend locally type in localhost:3001 in the browser after running npm start or node server.js.
+
+To test on Heroku follow the installation documentation for Heroku.:
+
+[Full-Stack Blog on installing the Heroku CLI](https://coding-boot-camp.github.io/full-stack/heroku/how-to-install-the-heroku-cli).
+
+[Heroku documentation on getting started with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs?singlepage=true)
+
+[Heroku documentation on creating a Heroku remote](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote)
 
 ## Questions
 
