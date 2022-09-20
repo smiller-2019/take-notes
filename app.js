@@ -15,5 +15,6 @@ app.use((req, res, next) => {
 
 // mounting a new router
 app.use("/api/notes", noteRouter);
+app.use("/", htmlRouter);
 
 module.exports = app;
