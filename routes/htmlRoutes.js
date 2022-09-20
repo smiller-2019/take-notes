@@ -3,8 +3,6 @@ const path = require("path");
 
 const app = express();
 
-console.log(__dirname);
-
 app.use(express.static("public"));
 
 // GET Route for homepage
