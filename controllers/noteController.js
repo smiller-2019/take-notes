@@ -1,9 +1,10 @@
 const fs = require("fs");
 //convert to an array of javascript objects
-const notes = JSON.parse(fs.readFileSync(`${__dirname}/../db/db.json`));
+const notes = JSON.parse(fs.readFileSync("./db/db.json"));
 
 exports.checkID = (req, res, next, val) => {
   console.log(`Notes id is: ${val}`);
+  console.log("length is " + notes.length);
   // check the note exists before deleting
   if (req.params.id * 1 > notes.length) {
     return res.status(404).json({
