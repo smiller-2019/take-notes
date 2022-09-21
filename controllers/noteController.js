@@ -2,6 +2,8 @@ const fs = require("fs");
 //convert to an array of javascript objects
 const notes = JSON.parse(fs.readFileSync("./db/db.json"));
 
+console.log("isArray:" + Array.isArray(notes));
+
 exports.checkID = (req, res, next, val) => {
   console.log(`Notes id is: ${val}`);
   console.log("length is " + notes.length);
@@ -28,13 +30,9 @@ exports.checkBody = (req, res, next) => {
 
 // get all notes
 exports.getAllNotes = (req, res) => {
+  console.log("getAllNotes isArray:" + Array.isArray(notes));
   console.log(req.requestTime);
-  res.status(200).json({
-    staus: "Success",
-    requestedAt: req.requestTime,
-    results: notes.length,
-    data: { notes },
-  });
+  res.json(notes);
 };
 
 // get a note for a specified id
@@ -46,12 +44,7 @@ exports.getNote = (req, res) => {
   // iterate through the array to find element that is equal to the id and matches the id
   const note = notes.find((el) => el.id === id);
 
-  res.status(200).json({
-    status: "Sucess",
-    data: {
-      note,
-    },
-  });
+  res.json(note);
 };
 
 // create a note with a new id
@@ -63,13 +56,9 @@ exports.createNote = (req, res) => {
   const newNote = Object.assign({ id: newId }, req.body);
   // add the new notes to the array
   notes.push(newNote);
+  console.log("createNote isArray:" + Array.isArray(notes));
   fs.writeFile("./db/db.json", JSON.stringify(notes), (err) => {
-    res.status(201).json({
-      status: "Succes",
-      data: {
-        note: newNote,
-      },
-    });
+    res.json(newNote);
   });
 };
 // delete a note for a specified id
@@ -86,11 +75,6 @@ exports.deleteNote = (req, res) => {
   console.log("deleting note");
   console.log(notes);
   fs.writeFile("./../db/db.json", JSON.stringify(notes), (err) => {
-    res.status(204).json({
-      status: "Succes",
-      data: {
-        note,
-      },
-    });
+    res.json(note);
   });
 };

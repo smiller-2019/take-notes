@@ -8,7 +8,7 @@ const router = express.Router();
 router.param("id", noteController.checkID);
 
 // seperate the route from the handlers using app.route and . notation
-// get a note from using the route handler for the id
+// get all notes from using the route handler
 // create a new note
 router
   .route("/")
