@@ -13,6 +13,7 @@ A note taker application
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
+- [Deployed application](#deployment)
 
 ## Description
 
@@ -77,3 +78,7 @@ Email: sue@myapp.com
 GitHub Profile: [smiller-2019](https://github.com/smiller-2019/)
 
 GitHub Repository: [smiller-2019](https://github.com/smiller-2019/)
+
+## Deployment
+
+[Deployed application on Heroku](https://note-taking-app-2022.herokuapp.com/)

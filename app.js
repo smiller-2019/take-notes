@@ -9,11 +9,6 @@ const app = express();
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  next();
-});
-
 // mounting a new router
 app.use("/api/notes", noteRouter);
 app.use("/", htmlRouter);
